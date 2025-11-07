@@ -24,11 +24,12 @@ def limpiar_pantalla():
 
 def solicitar_palabra() -> str:
     """
-    Solicita una palabra al jugador 1
-    La palabra debe tener mínimo 5 caracteres y solo contener letras
-    
-    Returns:
-        str: La palabra a adivinar en mayúsculas
+    Solicita una palabra al jugador 1.
+
+    La palabra debe tener mínimo 5 caracteres y solo contener letras.
+
+    :return: La palabra a adivinar en mayúsculas.
+    :rtype: str
     """
     # TODO: Implementar la función
     # - Usar un bucle while para repetir hasta que la palabra sea válida
@@ -37,7 +38,7 @@ def solicitar_palabra() -> str:
     # - Convertir a mayúsculas (upper())
     valido = False
     while valido == False:
-        palabra = input("Jugador 1: Introduce la palabra a adivinar (mínimo 5 letras):")
+        palabra = input("Jugador 1: Introduce la palabra a adivinar (mínimo 5 letras): ")
         if len(palabra) < 5:
             print("Error: La palabra debe tener al menos 5 caracteres.")
         elif not palabra.isalpha():
@@ -46,17 +47,17 @@ def solicitar_palabra() -> str:
             valido = True
 
     lista_palabra = list(palabra)
-    for i, letra in enumerate(lista_palabra):
-        if lista_palabra[i] in ['á', 'Á']:
-            lista_palabra[i] = 'a'
-        elif lista_palabra[i] in ['é', 'É']:
-            lista_palabra[i] = 'e'
-        elif lista_palabra[i] in ['í', 'Í']:
-            lista_palabra[i] = 'i'
-        elif lista_palabra[i] in ['ó', 'Ó']:
-            lista_palabra[i] = 'o'
-        elif lista_palabra[i] in ['ú', 'Ú']:
-            lista_palabra[i] = 'u'
+    for c, letra in enumerate(lista_palabra):
+        if lista_palabra[c] in ['á', 'Á']:
+            lista_palabra[c] = 'a'
+        elif lista_palabra[c] in ['é', 'É']:
+            lista_palabra[c] = 'e'
+        elif lista_palabra[c] in ['í', 'Í']:
+            lista_palabra[c] = 'i'
+        elif lista_palabra[c] in ['ó', 'Ó']:
+            lista_palabra[c] = 'o'
+        elif lista_palabra[c] in ['ú', 'Ú']:
+            lista_palabra[c] = 'u'
 
     palabra_sin_tildes = ""
     for letra in lista_palabra:
@@ -66,6 +67,15 @@ def solicitar_palabra() -> str:
     return palabra_sin_tildes.upper()
 
 def obtener_palabra_aleatoria()-> str:
+    """
+    Obtiene una palabra aleatoria desde una API o una lista local.
+
+    Si no hay conexión con la API, se elige una palabra al azar
+    de una lista local predefinida.
+
+    :return: Una palabra aleatoria en mayúsculas.
+    :rtype: str
+    """
     lista_local = [
         "camino", "ventana", "escuela", "persona", "montaña", "palabra", "jardín", "computadora",
         "película", "familia", "ciudad", "rincón", "mariposa", "pintura", "amistad", "frutero",
@@ -107,14 +117,14 @@ def obtener_palabra_aleatoria()-> str:
 
 def solicitar_letra(letras_usadas:list) -> str:
     """
-    Solicita una letra al jugador 2
-    La letra debe ser válida (solo una letra) y no estar ya usada
-    
-    Args:
-        letras_usadas (list): Lista de letras ya introducidas
-        
-    Returns:
-        str: La letra introducida en mayúsculas
+    Solicita una letra al jugador 2.
+
+    La letra debe ser válida (una sola letra) y no haber sido usada antes.
+
+    :param letras_usadas: Lista de letras ya introducidas.
+    :type letras_usadas: list
+    :return: La letra introducida en mayúsculas.
+    :rtype: str
     """
     # TODO: Implementar la función
     # - Usar un bucle while para repetir hasta que la letra sea válida
@@ -137,12 +147,14 @@ def solicitar_letra(letras_usadas:list) -> str:
 
 def mostrar_estado(palabra_oculta, intentos, letras_usadas):
     """
-    Muestra el estado actual del juego
-    
-    Args:
-        palabra_oculta (str): La palabra con _ y letras adivinadas
-        intentos (int): Número de intentos restantes
-        letras_usadas (list): Lista de letras ya usadas
+    Muestra el estado actual del juego.
+
+    :param palabra_oculta: La palabra con guiones bajos y letras adivinadas.
+    :type palabra_oculta: str
+    :param intentos: Número de intentos restantes.
+    :type intentos: int
+    :param letras_usadas: Lista de letras ya usadas.
+    :type letras_usadas: list
     """
     # TODO: Implementar la función
     # - Imprimir intentos restantes
@@ -163,15 +175,16 @@ def mostrar_estado(palabra_oculta, intentos, letras_usadas):
 
 def actualizar_palabra_oculta(palabra, palabra_oculta, letra):
     """
-    Actualiza la palabra oculta revelando las apariciones de la letra
-    
-    Args:
-        palabra (str): La palabra completa a adivinar
-        palabra_oculta (str): La palabra actual con _ y letras adivinadas
-        letra (str): La letra que se ha adivinado
-        
-    Returns:
-        str: La palabra oculta actualizada
+    Actualiza la palabra oculta revelando las apariciones de la letra.
+
+    :param palabra: La palabra completa a adivinar.
+    :type palabra: str
+    :param palabra_oculta: La palabra actual con guiones y letras adivinadas.
+    :type palabra_oculta: str
+    :param letra: La letra que se ha adivinado.
+    :type letra: str
+    :return: La palabra oculta actualizada.
+    :rtype: str
     """
     # TODO: Implementar la función
     # - Recorrer la palabra original con un bucle for
