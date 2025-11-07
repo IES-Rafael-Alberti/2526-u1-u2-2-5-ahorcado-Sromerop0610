@@ -150,3 +150,9 @@ Profesor: revilofe
 
 ## Licencia
 Material educativo para uso académico
+
+## Prueba Debuggeo
+![alt text](<assets/Captura de pantalla 2025-11-07 102630.png>)
+
+## Prueba documentación cambiada 
+https://github.com/IES-Rafael-Alberti/2526-u1-u2-2-5-ahorcado-Sromerop0610/blob/17c9d6cffedde6cbbe2ca54fcba99c1d7ce2c964/src/ahorcado.py#L119-L128
