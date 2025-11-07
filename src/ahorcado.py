@@ -8,8 +8,8 @@ Práctica de programación que evalúa:
 - Sentencias iterativas
 - Manipulación de strings
 
-Autor: [Nombre del alumno]
-Fecha: [Fecha]
+Autor: [Sara Romero Peralta]
+Fecha: [06/11/2025]
 """
 
 
@@ -34,7 +34,16 @@ def solicitar_palabra():
     # - Verificar que tenga al menos 5 caracteres (len())
     # - Verificar que solo contenga letras (isalpha())
     # - Convertir a mayúsculas (upper())
-    pass
+    valido = False
+    while valido == False:
+        palabra = ("Jugador 1: Introduce la palabra a adivinar (mínimo 5 letras):")
+        if len(palabra) < 5:
+            print("Error: La palabra debe tener al menos 5 caracteres.")
+        elif not palabra.isalpha():
+            print("Error: La palabra solo puede contener letras.")
+        else:
+            valido = True
+    palabra = palabra.upper()
 
 
 def solicitar_letra(letras_usadas):
