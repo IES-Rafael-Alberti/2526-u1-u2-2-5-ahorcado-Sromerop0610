@@ -11,7 +11,8 @@ Práctica de programación que evalúa:
 Autor: [Sara Romero Peralta]
 Fecha: [06/11/2025]
 """
-
+import random
+import requests
 
 def limpiar_pantalla():
     """
@@ -43,8 +44,65 @@ def solicitar_palabra() -> str:
             print("Error: La palabra solo puede contener letras.")
         else:
             valido = True
+
+    lista_palabra = list(palabra)
+    for i, letra in enumerate(lista_palabra):
+        if lista_palabra[i] in ['á', 'Á']:
+            lista_palabra[i] = 'a'
+        elif lista_palabra[i] in ['é', 'É']:
+            lista_palabra[i] = 'e'
+        elif lista_palabra[i] in ['í', 'Í']:
+            lista_palabra[i] = 'i'
+        elif lista_palabra[i] in ['ó', 'Ó']:
+            lista_palabra[i] = 'o'
+        elif lista_palabra[i] in ['ú', 'Ú']:
+            lista_palabra[i] = 'u'
+
+    palabra_sin_tildes = ""
+    for letra in lista_palabra:
+        palabra_sin_tildes = palabra_sin_tildes + letra
+
     
-    return palabra.upper()
+    return palabra_sin_tildes.upper()
+
+def obtener_palabra_aleatoria()-> str:
+    lista_local = [
+        "camino", "ventana", "escuela", "persona", "montaña", "palabra", "jardín", "computadora",
+        "película", "familia", "ciudad", "rincón", "mariposa", "pintura", "amistad", "frutero",
+        "murciélago", "carretera", "hermosura", "noticias", "profesor", "misterio", "bicicleta",
+        "animal", "estrella", "reloj", "canción", "historia", "playa", "invierno", "botella",
+        "chocolate", "teléfono", "zapatos", "panadero", "espejo", "ventilador", "planeta", "bosque",
+        "universo", "tormenta", "caballo", "castillo", "pescador", "pirámide", "bandera", "fábrica",
+        "mochila", "lámpara", "teclado", "avión", "camiseta", "heladera", "montículo", "pelota",
+        "computador", "ratón", "cuchillo", "tomate", "marinero", "futbolista", "mecánico",
+        "caramelo", "ventilador", "florero", "electricidad", "glaciar", "montañismo", "dentista",
+        "farmacia", "baterista", "navegante", "barquito", "sendero", "palmera", "buzonero",
+        "molinero", "zapatero", "juguetero", "relojero", "cantante", "arquitecto", "biblioteca",
+        "pintor", "marinero", "jugador", "torero", "pantera", "serpiente", "elefante", "jirafa",
+        "rinoceronte", "tigre", "leopardo", "ballena", "delfín", "tortuga", "pingüino", "zorro",
+        "ardilla", "castor", "conejo", "ciervo", "gaviota", "murmullo", "candado", "herradura"
+    ]
+
+    intentos_maximos = 5
+
+    for intento in range(intentos_maximos):
+        try:
+            resp = requests.get("https://random-word-api.herokuapp.com/word?lang=es&number=10")
+            
+            if resp.status_code == 200:
+                palabras = resp.json()
+                
+                candidatas = [p for p in palabras if len(p) >= 5 and p.isalpha()]
+                
+                if len(candidatas) > 0:
+                    palabra = random.choice(candidatas)
+                    return palabra.upper()
+            
+        except Exception as e:
+            print(f"Error al conectar con la API (intento {intento + 1}): {e}")
+
+    print("No se pudo obtener palabra de la API. Se usará una palabra de la lista local.")
+    return random.choice(lista_local).upper()
 
 
 def solicitar_letra(letras_usadas:list) -> str:
@@ -143,7 +201,16 @@ def jugar():
     
     # TODO: Solicitar la palabra al jugador 1
     # palabra = solicitar_palabra()
-    palabra = solicitar_palabra()
+    modo = input("¿Quieres jugar contra otro jugador (1) o contra la máquina (2)? ")
+    while modo != "1" and modo != "2":
+        modo=input("Debes introducir 1 o 2.\n¿Quieres jugar contra otro jugador (1) o contra la máquina (2)?")
+    if modo == "1":
+        palabra = solicitar_palabra()
+    else:
+        print("Eligiendo palabra aleatoria...")
+        palabra = obtener_palabra_aleatoria()
+        print("(Palabra seleccionada por la máquina)")
+
     # TODO: Limpiar la pantalla para que el jugador 2 no vea la palabra
     # limpiar_pantalla()
     limpiar_pantalla()
@@ -208,6 +275,7 @@ def main():
             if jugar_otra_vez.lower() == "s" or jugar_otra_vez.lower() == "n":
                 valido = True
         if jugar_otra_vez == "s":
+            limpiar_pantalla()
             jugar()
         else:
             seguir = False
