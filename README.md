@@ -1,3 +1,5 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/8lAzcOMh)
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=21506829&assignment_repo_type=AssignmentRepo)
 # Práctica: El Juego del Ahorcado
 
 ## Descripción
@@ -148,3 +150,9 @@ Profesor: revilofe
 
 ## Licencia
 Material educativo para uso académico
+
+## Prueba Debuggeo
+![alt text](<assets/Captura de pantalla 2025-11-07 102630.png>)
+
+## Prueba documentación cambiada 
+https://github.com/IES-Rafael-Alberti/2526-u1-u2-2-5-ahorcado-Sromerop0610/blob/17c9d6cffedde6cbbe2ca54fcba99c1d7ce2c964/src/ahorcado.py#L119-L128
