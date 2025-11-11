@@ -31,11 +31,6 @@ def solicitar_palabra() -> str:
     :return: La palabra a adivinar en mayúsculas.
     :rtype: str
     """
-    # TODO: Implementar la función
-    # - Usar un bucle while para repetir hasta que la palabra sea válida
-    # - Verificar que tenga al menos 5 caracteres (len())
-    # - Verificar que solo contenga letras (isalpha())
-    # - Convertir a mayúsculas (upper())
     valido = False
     while valido == False:
         palabra = input("Jugador 1: Introduce la palabra a adivinar (mínimo 5 letras): ")
@@ -126,12 +121,6 @@ def solicitar_letra(letras_usadas:list) -> str:
     :return: La letra introducida en mayúsculas.
     :rtype: str
     """
-    # TODO: Implementar la función
-    # - Usar un bucle while para repetir hasta que la letra sea válida
-    # - Verificar que sea solo un carácter (len() == 1)
-    # - Verificar que sea una letra (isalpha())
-    # - Verificar que no esté en letras_usadas (operador 'in')
-    # - Convertir a mayúsculas (upper())
     valida = False
     while valida == False:
         letra=input("Introduce una letra: ")
@@ -156,10 +145,6 @@ def mostrar_estado(palabra_oculta, intentos, letras_usadas):
     :param letras_usadas: Lista de letras ya usadas.
     :type letras_usadas: list
     """
-    # TODO: Implementar la función
-    # - Imprimir intentos restantes
-    # - Imprimir la palabra con espacios entre caracteres
-    # - Imprimir las letras usadas
     print(f"Intentos restantes: {intentos}\n")
 
     print("Palabra: \n")
@@ -186,11 +171,6 @@ def actualizar_palabra_oculta(palabra, palabra_oculta, letra):
     :return: La palabra oculta actualizada.
     :rtype: str
     """
-    # TODO: Implementar la función
-    # - Recorrer la palabra original con un bucle for
-    # - Usar enumerate() para obtener índice y carácter
-    # - Si el carácter coincide con la letra, reemplazar en palabra_oculta
-    # - Puedes convertir palabra_oculta a lista, modificar y volver a string
     lista_palabra_oculta = list(palabra_oculta)
     for c, letra_temporal in enumerate(palabra):
         if letra == letra_temporal:
@@ -209,11 +189,8 @@ def jugar():
     """
     print("=== JUEGO DEL AHORCADO ===\n")
     
-    # Configuración inicial
     INTENTOS_MAXIMOS = 5
     
-    # TODO: Solicitar la palabra al jugador 1
-    # palabra = solicitar_palabra()
     modo = input("¿Quieres jugar contra otro jugador (1) o contra la máquina (2)? ")
     while modo != "1" and modo != "2":
         modo=input("Debes introducir 1 o 2.\n¿Quieres jugar contra otro jugador (1) o contra la máquina (2)?")
@@ -224,37 +201,19 @@ def jugar():
         palabra = obtener_palabra_aleatoria()
         print("(Palabra seleccionada por la máquina)")
 
-    # TODO: Limpiar la pantalla para que el jugador 2 no vea la palabra
-    # limpiar_pantalla()
+
     limpiar_pantalla()
     palabra_oculta= ""
     for i in palabra:
         palabra_oculta = palabra_oculta + "_"
     
-    # TODO: Inicializar variables del juego
-    # - palabra_oculta: string con guiones bajos (ej: "_ _ _ _ _")
-    # - intentos: número de intentos restantes
-    # - letras_usadas: lista vacía
-    # - juego_terminado: False
 
     letras_usadas = []
     intentos = INTENTOS_MAXIMOS
     juego_terminado = False
     
     print("Jugador 2: ¡Adivina la palabra!\n")
-    
-    # TODO: Bucle principal del juego
-    # - Mientras haya intentos y el juego no haya terminado:
-    #   1. Mostrar el estado actual
-    #   2. Solicitar una letra
-    #   3. Añadir la letra a letras_usadas
-    #   4. Si la letra está en la palabra:
-    #      - Actualizar palabra_oculta
-    #      - Mostrar mensaje de acierto
-    #      - Si ya no hay '_' en palabra_oculta, el jugador ha ganado
-    #   5. Si la letra NO está en la palabra:
-    #      - Restar un intento
-    #      - Mostrar mensaje de fallo
+
     while not juego_terminado and intentos > 0:
         mostrar_estado(palabra_oculta, intentos, letras_usadas)
         letra = solicitar_letra(letras_usadas)
@@ -275,10 +234,6 @@ def main():
     """
     Punto de entrada del programa
     """
-    # TODO (Opcional): Preguntar si quiere jugar otra vez
-    # jugar_otra_vez = input("\n¿Quieres jugar otra vez? (s/n): ")
-    # if jugar_otra_vez.lower() == 's':
-    #     main()
     seguir = True
     while seguir == True:
         jugar()
